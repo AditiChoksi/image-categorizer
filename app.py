@@ -18,7 +18,7 @@ def render_homepage():
     bucketname = "insta" + location
     bucket = s3.Bucket(bucketname).objects.all()
 
-    data = defaultdict(list)
+    data = []
     for obj in bucket:
         print(obj)
         url = 'https://' + bucketname + '.s3.amazonaws.com/' + obj.key
@@ -26,12 +26,11 @@ def render_homepage():
         tags = [{'value': tag_name, 'title': tag_name}]
         image_info = {
             'src': url,
-            'thumbnail': url,
-            'thumbnailWidth': obj.key,
-            'thumbnailHeight': obj.key,
+            'imgname': obj.key,
+            "host": request.host,
             'tags': tags,
         }
-        data[tag_name].append(image_info)
+        data.append(image_info)
         
     return jsonify(data)
 
