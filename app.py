@@ -45,7 +45,8 @@ def sayHi():
 def health():
     data = {
         "status": "Success",
-        "code": "OK"
+        "code": "OK",
+        "host": request.host
     }
         
     return jsonify(data)
