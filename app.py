@@ -43,7 +43,10 @@ def sayHi():
 
 @app.route('/health')
 def health():
-    data = {"greeting": "Hi"}
+    data = {
+        "status": "Success",
+        "code": "OK"
+    }
         
     return jsonify(data)
 
